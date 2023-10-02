@@ -1,7 +1,8 @@
 # test test ;p
 ## *italics test*
 **bold test**
-[image test](http://google.com)
+
+[Link](http://a.com)
 
 ![Image](http://url/a.png)
 > BLOCKQUOTE TEST!!!
