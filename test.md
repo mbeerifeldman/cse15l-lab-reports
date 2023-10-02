@@ -2,7 +2,7 @@
 ## *italics test*
 **bold test**
 
-[Link](http://a.com)
+[Link](https://www.google.com/)
 
 ![Image](http://url/a.png)
 > BLOCKQUOTE TEST!!!
