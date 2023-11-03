@@ -8,15 +8,15 @@
 
 ![image](https://github.com/mbeerifeldman/cse15l-lab-reports/assets/114952150/db81d6ff-15ac-4dca-86b6-f7629b3a8708)
 
-> The methods called are handleRequest and main. The relevant arguments to handleRequest is the URI or current url whereas
-> the relevant values are the url belonging to URI, the String s, the int num and the String s1 and the String array parameters.
-> url reflectes the current url inputted while string s holds all of the strings inputted so far as one string.
-> num counts up with each string, or successful url passed and s1 sets rid of the + stored with the url string.
-> Parameters keeps track of what was input into the url.
+> The methods called are `handleRequest` and `main`. The relevant arguments to `handleRequest` is the URI or current `URL`/`url` whereas
+> the relevant values are the `url` belonging to `URI`, the `String s`, the `int num` and the `String s1` and the `String array parameters`.
+> `url` reflectes the current url inputted while `String s` holds all of the strings inputted so far as one string.
+> `num` counts up with each string, or successful url passed and `s1` gets rid of the `+` stored with the `url`.
+> `Parameters` keeps track of what was input into the url.
 
 > The values will change based on user input and based on how many inputs. One reason no values would get changed was if
-> the url did not get the necessary argument needed of /add-message?= followed by a string. Otherwise, the algorithm is set up
-> such that each time a url is passed, it will updated first its new url then take the string part of the url and remove all
+> the `url` did not get the necessary argument needed of `/add-message?=` followed by a string. Otherwise, the algorithm is set up
+> such that each time a URL is passed, it will update first its new `url` then take the string part of it and remove all
 > the pluses and then add this onto the current string holding all of the previous responses. It gets added then using the int value
 > which counts how many strings have been added.
 
@@ -26,7 +26,8 @@
 Logging in without password
 ![image](https://github.com/mbeerifeldman/cse15l-lab-reports/assets/114952150/cbae18a8-1d89-400b-a9da-e214031eade6)
 private key or /User/Bluestarr/.ssh/id_rsa
-![image](https://github.com/mbeerifeldman/cse15l-lab-reports/assets/114952150/d1330236-46f6-4db4-ba4c-da543068c287)
+![image](https://github.com/mbeerifeldman/cse15l-lab-reports/assets/114952150/6f89f50e-c876-41e3-bd99-543ece8fc501)
+
 public key or /User/Bluestarr/.ssh/id_rsa.pub
 
 
