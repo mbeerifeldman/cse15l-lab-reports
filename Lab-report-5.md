@@ -9,18 +9,20 @@ Thanks in advance.
 ![image](https://github.com/mbeerifeldman/cse15l-lab-reports/assets/114952150/d6c3ddf2-adb7-4e58-a570-222688578bed)
 
 2. 
-Hi, I think it might be helpful for you to trace through the function and with your test to simulate what you think the code should be doing at each step. It might be helpful to use
-the jdb debugger to see what values are being stored in your parameters. Good luck!
-
-3. 
-Ok! I added in jdb command to my bash script to see what values are being stored in my first test of the merge method. Based on these results,
-I can clearly see that the merged and expected are created with separate IDs and that what's printing is the left followed by the right. So
-I think the bug is that there isn't a proper comparison. This let me find the bug in my while statement comparing the two loops, finding that
-the logic for it was wrong. I had the greater than equal sign being used instead of the less than sign and this caused the while loop to never enter as
-the first index wasn't greater than the size of the input list and instead dropped down to just file in the merged list by going through the provided lists.
-<img width="460" alt="Screen Shot 2023-12-02 at 4 31 30 PM" src="https://github.com/mbeerifeldman/cse15l-lab-reports/assets/114952150/d6f851ac-e027-4668-98ba-b1d582fc34fb">
+Hi, I think it might be helpful for you to take a deeper look at the values your TestListExamples is storing to see if helps with looking at
+what the problem is. It might be helpful to use the jdb debugger to see what values are being stored in your parameters. Is there something obvious that
+stands out when looking at the two unmerged lists and the merged lists side by side? The debugger can be helpful with looking at this. Good luck!
 
 4. 
+Ok! I added in jdb command to my bash script to see what values are being stored in my first test of the merge method. Based on these results,
+I can clearly see that the merged and expected are created with separate IDs and that what's printing is the left followed by the right. So
+I think the bug is that there isn't a proper comparison such that the issue must either be with entering the while loop or something else in
+its body like the if statement. This pointed me to find the actual bug in my while statement comparing the two loops, finding that
+the logic for it was wrong. I had the greater than equal sign being used instead of the less than sign and this caused the while loop to never enter as
+the first index wasn't greater than the size of the input list and instead dropped down to just file in the merged list by going through the provided lists. Thank you for the help.
+<img width="460" alt="Screen Shot 2023-12-02 at 4 31 30 PM" src="https://github.com/mbeerifeldman/cse15l-lab-reports/assets/114952150/d6f851ac-e027-4668-98ba-b1d582fc34fb">
+
+6. 
 The files needed were in the `grade-review-mbeerifeldman` repo which held the `grade.sh` file that was used to use the tests in the `TestListExamples.java` file.
 The directory to access these files was originally the home one but after using `git clone` on the repo, I was then able to use `cd` to get into the `*/grade-review-mbeerifeldman` directory from the home directory to run `bash grade.sh`. Other files other then `grade.sh` and `TestListExamples.java` which were needed was `ListExamples.java` which was accessed through a repo only containing that file and passed as an argument to `grade.sh`. Additionally the grade-review repo also contains a grading area to transport all the .java files into and a folder containing the junit packages. Such that as an end result we end with directory structure created by `grade.sh` storing the files `student-submission/* ` `lib/ ` and `TestListExamples.java` all in `grading-area/`, where `grading-area`
 is a directory that is (first cleared and then) made upon each run of `grade.sh` used to store the passed in `ListExamples.java` file (stored in `student-submission` folder) and all the rest of
