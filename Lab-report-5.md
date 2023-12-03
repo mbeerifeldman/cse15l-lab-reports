@@ -20,10 +20,13 @@ the logic for it was wrong. I had the greater than equal sign being used instead
 the first index wasn't greater than the size of the input list and instead dropped down to just file in the merged list by going through the provided lists.
 <img width="460" alt="Screen Shot 2023-12-02 at 4 31 30 PM" src="https://github.com/mbeerifeldman/cse15l-lab-reports/assets/114952150/d6f851ac-e027-4668-98ba-b1d582fc34fb">
 
-4. j
+4. 
 The files needed were in the `grade-review-mbeerifeldman` repo which held the `grade.sh` file that was used to use the tests in the `TestListExamples.java` file.
-The directory to access these files was used by cloning the repo and then using `cd` to get into the `*/grade-review-mbeerifeldman` directory from the home
-directory.
+The directory to access these files was originally the home one but after using `git clone` on the repo, I was then able to use `cd` to get into the `*/grade-review-mbeerifeldman` directory from the home directory to run `bash grade.sh`. Other files other then `grade.sh` and `TestListExamples.java` which were needed was `ListExamples.java` which was accessed through a repo only containing that file and passed as an argument to `grade.sh`. Additionally the grade-review repo also contains a grading area to transport all the .java files into and a folder containing the junit packages. Such that as an end result we end with directory structure created by `grade.sh` of `student-submission/* grading-area/` `lib/ grading-area/` and `TestListExamples.java grading-area/` where `grading-area`
+is a directory that is (first cleared and then) made upon each run of `grade.sh` used to store the passed in the `ListExamples.java` file (stored in `student-submission` folder) and all the rest of
+the files present. 
+
+
 The contents of grade.sh before fix:
 
 ```
@@ -69,9 +72,107 @@ else
 fi
 ```
 
+The contents of `TestListExamples.java` before debug
+
+```
+import static org.junit.Assert.*;
+import org.junit.*;
+import java.util.Arrays;
+import java.util.List;
+
+class IsMoon implements StringChecker {
+  public boolean checkString(String s) {
+    return s.equalsIgnoreCase("moon");
+  }
+}
+
+public class TestListExamples {
+  @Test(timeout = 500)
+  public void testMergeRightEnd() {
+    List<String> left = Arrays.asList("a", "b", "c");
+    List<String> right = Arrays.asList("a", "d");
+    List<String> merged = ListExamples.merge(left, right);
+    List<String> expected = Arrays.asList("a", "a", "b", "c", "d");
+    assertEquals(expected, merged);
+  }
+  @Test(timeout = 500)
+        public void testMerge() {
+        List<String> input1 = Arrays.asList("b", "c", "d");
+        List<String> input2 = Arrays.asList("a", "d", "e", "e", "e");
+        List<String> input3 = Arrays.asList("a", "b", "c", "d", "e", "e", "e");
+
+        assertEquals(input3, ListExamples.merge(input1, input2));
+        }
+}
+```
+
+And contents of `ListExamples.java` before debug: 
+
+```
+import java.util.ArrayList;
+import java.util.List;
+
+interface StringChecker { boolean checkString(String s); }
+
+class ListExamples {
+
+  // Returns a new list that has all the elements of the input list for which
+  // the StringChecker returns true, and not the elements that return false, in
+  // the same order they appeared in the input list;
+  static List<String> filter(List<String> list, StringChecker sc) {
+    List<String> result = new ArrayList<>();
+    for(String s: list) {
+      if(sc.checkString(s)) {
+        result.remove(0);
+      }
+    }
+    return result;
+  }
+
+
+  // Takes two sorted list of strings (so "a" appears before "b" and so on),
+  // and return a new list that has all the strings in both list in sorted order.
+  static List<String> merge(List<String> list1, List<String> list2) {
+    List<String> result = new ArrayList<>();
+    int index1 = 0, index2 = 0;
+    while(index1 > (list1.size()) && index2 < list2.size()) {
+      if(list1.get(index1).compareTo(list2.get(index2)) < 0) {
+        result.add(list1.get(index1));
+        index1 += 1;
+      }
+      else {
+        result.add(list2.get(index2));
+        index2 += 1;
+      }
+    }
+    while(index1 < list1.size()) {
+      result.add(list1.get(index1));
+      index1 += 1;
+    }
+    while(index2 < list2.size()) {
+      result.add(list2.get(index2));
+      // change index1 below to index2 to fix test
+      index2 += 1;
+    }
+    return result;
+  }
+
+
+}
+```
+
+Command line to trigger bug:
+
+```
+bash grade.sh https://github.com/mbeerifeldman/listmethods.git
+```
+
 
 How to debug:
+First add run jdb on TestListExamples.java to see the values that are being stored. Then after deducing what the symptom is in more detail, know where to look for bug 
+(which while loop specifically) and then change the logic in the while loop, successfully correcting it so that it will run. 
 
+Adding jdb to bash file:
 ```
 
 then
@@ -83,6 +184,19 @@ else
     echo "All tests passed! Nice job."
 fi
 ```
-And then based on this 
+
+Fixing while loop:
+```
+while(index1 < (list1.size()) && index2 < list2.size()) //now both are less than and loop should run
+```
+
+## Part 2
+
+I did not know about the amazing abilities of vim. I find it to be very useful when working without the phyiscal files being present, and thus being able to just use the command 
+line to edit files. I had no knowledge of vim before this class, but with just a few commands memorized, I think it's very helpful. I also had no knowledge of jdb before this class
+and find that using it is very helpful for getting to take a deeper look at the code but also helpful with just laying out
+what values each variable has in a clear way. 
+
+
 
 
