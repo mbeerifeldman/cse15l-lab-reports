@@ -22,9 +22,9 @@ the first index wasn't greater than the size of the input list and instead dropp
 
 4. 
 The files needed were in the `grade-review-mbeerifeldman` repo which held the `grade.sh` file that was used to use the tests in the `TestListExamples.java` file.
-The directory to access these files was originally the home one but after using `git clone` on the repo, I was then able to use `cd` to get into the `*/grade-review-mbeerifeldman` directory from the home directory to run `bash grade.sh`. Other files other then `grade.sh` and `TestListExamples.java` which were needed was `ListExamples.java` which was accessed through a repo only containing that file and passed as an argument to `grade.sh`. Additionally the grade-review repo also contains a grading area to transport all the .java files into and a folder containing the junit packages. Such that as an end result we end with directory structure created by `grade.sh` of `student-submission/* grading-area/` `lib/ grading-area/` and `TestListExamples.java grading-area/` where `grading-area`
-is a directory that is (first cleared and then) made upon each run of `grade.sh` used to store the passed in the `ListExamples.java` file (stored in `student-submission` folder) and all the rest of
-the files present. 
+The directory to access these files was originally the home one but after using `git clone` on the repo, I was then able to use `cd` to get into the `*/grade-review-mbeerifeldman` directory from the home directory to run `bash grade.sh`. Other files other then `grade.sh` and `TestListExamples.java` which were needed was `ListExamples.java` which was accessed through a repo only containing that file and passed as an argument to `grade.sh`. Additionally the grade-review repo also contains a grading area to transport all the .java files into and a folder containing the junit packages. Such that as an end result we end with directory structure created by `grade.sh` storing the files `student-submission/* ` `lib/ ` and `TestListExamples.java` all in `grading-area/`, where `grading-area`
+is a directory that is (first cleared and then) made upon each run of `grade.sh` used to store the passed in `ListExamples.java` file (stored in `student-submission` folder) and all the rest of
+the files present in `lib` (junit) and `TestListExamples.java`. 
 
 
 The contents of grade.sh before fix:
